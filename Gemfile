@@ -84,3 +84,6 @@ gem 'image_processing', '~> 1.2'
 
 gem 'gon'
 
+group :production do
+  gem 'pg'
+end
