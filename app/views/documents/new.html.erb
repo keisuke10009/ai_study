@@ -1,0 +1,28 @@
+<%= render "shared/header" %>
+
+<h1 class="title" >学習画面</h1>
+
+<div>
+  <%= form_with model: @learning_outcom, local: true do |l| %>
+    <div class="item-price-box">
+      <span class="item-price">
+        タイトル：<%= @document.title %>
+      </span>
+      <span class="item-postage">
+        レベル：<%= @document.level.name %>
+      </span>
+      <span class="item-postage">
+        カテゴリー：<%= @document.category.name %>
+      </span>
+    </div>
+    <div>
+      <%= @document.document %>
+    </div>
+    <div class="items-explain">
+      <div class="weight-bold-text">
+        文章
+      </div>
+      <%= l.text_area :text, class:"items-text", id:"item-info", placeholder:"" ,rows:"7" ,maxlength:"1000" %>
+    </div>
+  <% end %>
+</div>

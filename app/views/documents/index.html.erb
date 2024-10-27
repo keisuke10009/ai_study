@@ -1,4 +1,49 @@
 <%= render "shared/header" %>
 
-<h1>AI Study</h1>
-
+<h1 class="title">問題文一覧画面</h1>
+<div class="main_contents" >
+  <table class="table">
+    <thead class="table_thead">
+      <tr class="table_tr" >
+        <th class="talbe_head" >レベル</th>
+        <th class="talbe_head" >カテゴリー</th>
+        <th class="talbe_head" >タイトル</th>
+        <th class="talbe_head" >要約</th>
+        <th class="talbe_head" >感想文</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @documents.each do |document| %>
+        <tr class="table_tr" >
+          <td class="talbe_content" ><%= document.level.name %></td>
+          <td class="talbe_content" ><%= document.category.name %></td>
+          <td class="talbe_content" ><%= document.title %></td>
+          <td class="talbe_content" > 
+            <% i = 0 %>
+            <% @learning_outcomes.each do |learning_outcome| %>
+              <% if learning_outcome != nil && learning_outcome.sum_rel_id == 1 && learning_outcome.document_id == document.id %>
+                <%= link_to "要約", new_document_path(id: document.id, sum_rel_id: 1), class: "item-red-btn" %>
+                <% i = 1 %>
+              <% end %>
+            <% end %>
+            <% if i != 1 %>
+              <%= link_to "要約", new_document_path(id: document.id, sum_rel_id: 1), class: "item-red-btn" %>
+            <% end %>
+          </td>
+          <td class="talbe_content" >
+          <% i = 0 %>
+          <% @learning_outcomes.each do |learning_outcome| %>
+            <% if learning_outcome != nil && learning_outcome.sum_rel_id == 2 && learning_outcome.document_id == document.id %>
+              <%= link_to "感想文", new_document_path(id: document.id, sum_rel_id: 2), class: "item-red-btn" %>
+              <% i = 1 %>
+            <% end %>
+          <% end %>
+          <% if i != 1 %>
+            <%= link_to "感想文", new_document_path(id: document.id, sum_rel_id: 2), class: "item-red-btn" %>
+          <% end %>
+        </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

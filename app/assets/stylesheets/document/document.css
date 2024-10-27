@@ -1,0 +1,39 @@
+.title {
+  width: 800px;
+  margin: 30px auto;
+  size: 40px;
+  color: skyblue;
+  text-align: center;
+}
+
+.main_contents {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.table {
+  width: 800px;
+  border-collapse: collapse;
+}
+
+.talbe_head {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.table_tr {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.talbe_content {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+}
