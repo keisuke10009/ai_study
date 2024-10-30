@@ -1,3 +1,4 @@
+/* 画面共通 */
 .title {
   width: 800px;
   margin: 30px auto;
@@ -11,6 +12,7 @@
   margin: 0 auto;
 }
 
+/* 問題文一覧画面 */
 .table {
   width: 800px;
   border-collapse: collapse;
@@ -36,4 +38,54 @@
 
 th {
   background-color: #f4f4f4;
+}
+
+/* 学習画面 */
+.content_head {
+  width: 800px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.content_title {
+  margin-right: 30px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.content_level {
+  margin-right: 30px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.content_category {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.document {
+  font-size: 16px;
+  margin-bottom: 20px;
+  line-height: 2;
+}
+
+.input_text {
+  width: 800px;
+}
+
+.button_area {
+  width: 800px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.input_button {
+  width: 200px;
+  height: 30px;
+  background: #0099e8;
+  border: 1px solid #0099e8;
+  border-radius: 10px;
+  color: #fff;
 }

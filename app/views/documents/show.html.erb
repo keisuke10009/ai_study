@@ -1,0 +1,33 @@
+<%= render "shared/header" %>
+
+<h1 class="title" >学習結果</h1>
+
+<div class="main_contents">
+  <div class="content_head">
+    <div class="content_title">
+      タイトル：<%= @document.title %>
+    </div>
+    <div class="content_level">
+      レベル：<%= @document.level.name %>
+    </div>
+    <div class="content_category">
+      カテゴリー：<%= @document.category.name %>
+    </div>
+  </div>
+  <div>問題文</div>
+  <div class="document">
+    <%= @document.document %>
+  </div>
+  <div>あなたの<%= @learning_outcome.sum_rel.name %></div>
+  <div class="document">
+    <%= @learning_outcome.text %>
+  </div>
+  <div>参考の<%= @learning_outcome.sum_rel.name %></div>
+  <div class="document">
+    <% if @learning_outcome.sum_rel_id == 1%>
+      <%= @document.summary_ai %>
+    <% else %>
+      <%= @document.reflection_essay_ai %>
+    <% end %>
+  </div>
+</div>
