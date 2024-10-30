@@ -88,4 +88,8 @@ group :production do
   gem 'pg'
 end
 
-gem 'openai'
+gem 'ruby-openai'
+
+gem 'faraday'
+
+gem 'faraday_middleware'

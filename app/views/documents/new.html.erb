@@ -2,27 +2,36 @@
 
 <h1 class="title" >学習画面</h1>
 
-<div>
-  <%= form_with model: @learning_outcom, local: true do |l| %>
-    <div class="item-price-box">
-      <span class="item-price">
+<div class="main_contents">
+  <%= form_with model: @learning_outcome, url: "/documents", method: :post, local: true do |f| %>
+    <%= f.hidden_field :sum_rel_id, value: @sum_rel_id %>
+    <%= f.hidden_field :document_id, value: @document.id %>
+    <div class="content_head">
+      <div class="content_title">
         タイトル：<%= @document.title %>
-      </span>
-      <span class="item-postage">
+      </div>
+      <div class="content_level">
         レベル：<%= @document.level.name %>
-      </span>
-      <span class="item-postage">
+      </div>
+      <div class="content_category">
         カテゴリー：<%= @document.category.name %>
-      </span>
+      </div>
     </div>
-    <div>
+    <div class="document">
       <%= @document.document %>
     </div>
-    <div class="items-explain">
-      <div class="weight-bold-text">
-        文章
+    <div class="">
+      <div class="">
+        <% if @sum_rel_id == "1" %>
+          要約を記入して下さい
+        <% else %>
+          感想文を記入して下さい
+        <% end %>
       </div>
-      <%= l.text_area :text, class:"items-text", id:"item-info", placeholder:"" ,rows:"7" ,maxlength:"1000" %>
+      <%= f.text_area :text, class:"input_text",rows:"20" ,maxlength:"500" %>
+    </div>
+    <div class="button_area">
+      <%= f.submit "送信する" ,class:"input_button" %>
     </div>
   <% end %>
 </div>
