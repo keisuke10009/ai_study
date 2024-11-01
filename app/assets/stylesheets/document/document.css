@@ -40,6 +40,30 @@ th {
   background-color: #f4f4f4;
 }
 
+.item-btn {
+  background-color: #0099e8;
+  text-align: center;
+  font-size: 15px;
+  color: #fff;
+  margin: 1px 1px;
+  padding: 5px 10px;
+  border: solid 1px #0099e8;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.item-sumi-btn {
+  background-color: #ccc;
+  text-align: center;
+  font-size: 15px;
+  color: #fff;
+  margin: 1px 1px;
+  padding: 5px 10px;
+  border: solid 1px #ccc;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
 /* 学習画面 */
 .content_head {
   width: 800px;
@@ -69,6 +93,9 @@ th {
   font-size: 16px;
   margin-bottom: 20px;
   line-height: 2;
+  border: solid 1px black;
+  border-radius: 10px;
+  padding: 10px 10px;
 }
 
 .input_text {
@@ -81,6 +108,15 @@ th {
   text-align: center;
 }
 
+.input_button_disable {
+  width: 200px;
+  height: 30px;
+  background: #ccc;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  color: #fff;
+}
+
 .input_button {
   width: 200px;
   height: 30px;
@@ -88,4 +124,34 @@ th {
   border: 1px solid #0099e8;
   border-radius: 10px;
   color: #fff;
+}
+
+.content_vocabulary {
+  margin: 20px 0;
+}
+
+.vocabulary_title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.vocabulary {
+  font-size: 15px;
+  padding: 2px;
+}
+
+.input_title_content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input_title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* 学習結果画面 */
+.document_title {
+  font-size: 20px;
+  font-weight: bold;
 }

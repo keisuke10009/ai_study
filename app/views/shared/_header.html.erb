@@ -2,12 +2,10 @@
   <div class='nav'>
     <ul class='lists-right'>
       <% if user_signed_in? %>
-        <li><%= link_to current_user.nickname, "#", class: "user-nickname" %></li>
-        <li>現在のポイント:<%= current_user.points %></li>
+        <li class="user-nickname" ><%= current_user.nickname %>さん</li>
+        <li class="current_user_points" >景品獲得まであと<%= current_user.points == nil ? 0 : current_user.points %>ポイント</li>
+        <li><%= link_to '問題文一覧画面へ', root_path, class: "root_page" %></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, data: {turbo_method: :delete}, class: "logout" %></li>
-      <% else %>
-        <li><%= link_to 'ログイン', new_user_session_path, class: "login" %></li>
-        <li><%= link_to '新規登録', new_user_registration_path, class: "sign-up" %></li>
       <% end %>
     </ul>
   </div>
