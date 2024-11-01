@@ -20,18 +20,30 @@
     <div class="document">
       <%= @document.document %>
     </div>
+    <div class="content_vocabulary">
+      <div class="vocabulary_title">語彙</div>
+      <% @vocabularys.each do |vocabulary| %>
+        <div class="vocabulary"><%= vocabulary %></div>
+      <% end %>
+    </div>
+    
+    <%= render 'shared/error_messages', model: @learning_outcome %>
+
     <div class="">
-      <div class="">
-        <% if @sum_rel_id == "1" %>
-          要約を記入して下さい
-        <% else %>
-          感想文を記入して下さい
-        <% end %>
+      <div class="input_title_content">
+        <div class="input_title">
+          <% if @sum_rel_id == "1" %>
+            要約を記入して下さい(200文字〜500文字程度)
+          <% else %>
+            感想文を記入して下さい(200文字〜500文字程度)
+          <% end %>
+        </div>
+        <div class="text_count">0文字</div>
       </div>
-      <%= f.text_area :text, class:"input_text",rows:"20" ,maxlength:"500" %>
+      <%= f.text_area :text, class:"input_text", rows:"20" ,maxlength:"550" %>
     </div>
     <div class="button_area">
-      <%= f.submit "送信する" ,class:"input_button" %>
+      <%= f.submit "送信する" ,id: "input_button", class:"input_button_disable", disabled: true %>
     </div>
   <% end %>
 </div>
