@@ -5,5 +5,5 @@ class LearningOutcome < ApplicationRecord
   belongs_to :user
   belongs_to :document
 
-  validates :text, presence: true
+  validates :text, :sum_rel_id, :score, :assessment, presence: true
 end
