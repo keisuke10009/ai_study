@@ -3,7 +3,7 @@
 <h1 class="title" >学習画面</h1>
 
 <div class="main_contents">
-  <%= form_with model: @learning_outcome, url: "/documents", method: :post, local: true do |f| %>
+  <%= form_with model: @learning_outcome, url: "/learning_outcomes", method: :post, local: true do |f| %>
     <%= f.hidden_field :sum_rel_id, value: @sum_rel_id %>
     <%= f.hidden_field :document_id, value: @document.id %>
     <div class="content_head">
