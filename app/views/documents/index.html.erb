@@ -22,24 +22,24 @@
             <% i = 0 %>
             <% @learning_outcomes.each do |learning_outcome| %>
               <% if learning_outcome != nil && learning_outcome.sum_rel_id == 1 && learning_outcome.document_id == document.id %>
-                <%= link_to "要約", document_path(id: learning_outcome.id), class: "item-sumi-btn" %>
+                <%= link_to "要約", learning_outcome_path(id: learning_outcome.id), class: "item-sumi-btn" %>
                 <% i = 1 %>
               <% end %>
             <% end %>
             <% if i != 1 %>
-              <%= link_to "要約", new_document_path(id: document.id, sum_rel_id: 1), class: "item-btn" %>
+              <%= link_to "要約", new_learning_outcome_path(id: document.id, sum_rel_id: 1), class: "item-btn" %>
             <% end %>
           </td>
           <td class="talbe_content" >
           <% i = 0 %>
           <% @learning_outcomes.each do |learning_outcome| %>
             <% if learning_outcome != nil && learning_outcome.sum_rel_id == 2 && learning_outcome.document_id == document.id %>
-              <%= link_to "感想文", document_path(id: learning_outcome.id), class: "item-sumi-btn" %>
+              <%= link_to "感想文", learning_outcome_path(id: learning_outcome.id), class: "item-sumi-btn" %>
               <% i = 1 %>
             <% end %>
           <% end %>
           <% if i != 1 %>
-            <%= link_to "感想文", new_document_path(id: document.id, sum_rel_id: 2), class: "item-btn" %>
+            <%= link_to "感想文", new_learning_outcome_path(id: document.id, sum_rel_id: 2), class: "item-btn" %>
           <% end %>
         </td>
         </tr>

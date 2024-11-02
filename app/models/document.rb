@@ -3,4 +3,6 @@ class Document < ApplicationRecord
   belongs_to :level
   belongs_to :category
 
+  has_many :learning_outcomes
+
 end

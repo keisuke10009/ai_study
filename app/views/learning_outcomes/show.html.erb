@@ -46,5 +46,23 @@
         <li><%= improvement %></li>
       <% end %>
     </ul>
-  <div>
+  </div>
+  <div class="learning_outcome_comments">
+    <%= form_with model: [@learning_outcome, @comment], comments: "comments_form", local: true do |f|%>
+      <div class="field">
+        <%= f.label :comment, "コメント" %><br>
+        <%= f.text_area :comment, class:"comment_content", rows:3 %>
+      </div>
+      <div class="actions">
+        <%= f.submit "送信する", class: :form_btn  %>
+      </div>
+    <% end %>
+    <ul class="comments_lists">
+      <% @comments.each do |comment| %>
+        <li class="comments_list">
+          <%= comment.comment %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
