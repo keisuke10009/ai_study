@@ -118,7 +118,41 @@
 }
 
 /* 学習履歴画面 */
-.contents {
+.history_contents {
   width: 800px;
   margin: 10px auto;
+}
+
+.history_head_contents {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.head_contents_learnings {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  font-size: 20px;
+}
+
+.head_contents_max {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  font-size: 20px;
+}
+
+.head_contents_average {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  font-size: 20px;
+}
+
+.table_contents {
+  margin: 20px 0;
+}
+
+tbody tr:nth-child(2n) {
+  background-color: #ecfafc;
 }
