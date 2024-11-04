@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   resources :documents, only: :show
 
   resources :learning_outcomes do
-    resources :comments, only: :create  
+    resources :comments, only: :create
+    collection do
+      get 'history'
+    end
   end
+
+  resources :study_guides, only: :index
 
 end
