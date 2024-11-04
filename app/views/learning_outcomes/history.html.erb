@@ -1,0 +1,42 @@
+<h1 class="title" >学習履歴画面</h1>
+
+<div class="history_contents">
+  <div class="history_head_contents">
+    <div class="head_contents_learnings">
+      <div>学習回数</div><div><%= @learnings %></div>
+    </div>
+    <div>
+      <div>最高点</div><div><%= @max %></div>
+    </div>
+    <div>
+      <div>平均点</div><div><%= @average %></div>
+    </div>
+  </div>
+  <div class="table_contents">
+    <table class="table">
+      <thead class="table_thead">
+        <tr class="table_tr" >
+          <th class="talbe_head" >学習日</th>
+          <th class="talbe_head" >レベル</th>
+          <th class="talbe_head" >タイトル</th>
+          <th class="talbe_head" >要約/感想文</th>
+          <th class="talbe_head" >点数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @documents_learning_outcomes.each do |document_learning_outcome| %>
+          <tr class="table_tr" >
+            <td class="talbe_content" ><%= document_learning_outcome.created_at %></td>
+            <td class="talbe_content" ><%= document_learning_outcome.level.name %></td>
+            <td class="talbe_content" ><%= document_learning_outcome.title %></td>
+            <td class="talbe_content" ><%= document_learning_outcome.sum_rel_id %></td>
+            <td class="talbe_content" ><%= document_learning_outcome.score %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+

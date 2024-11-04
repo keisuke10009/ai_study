@@ -41,6 +41,21 @@ class LearningOutcomesController < ApplicationController
       @comments = @learning_outcome.comments.includes(:user)
     end
   
+    # 学習履歴画面
+    def history
+      # documentsテーブルとlearning_outcomesテーブルから取得
+      @documents_learning_outcomes = Document.joins(:learning_outcomes)
+                            .where(learning_outcomes: { user_id: current_user.id })
+                            .select('documents.*, learning_outcomes.*')
+                            .order('learning_outcomes.created_at ASC')
+      # 学習回数
+      @learnings = @documents_learning_outcomes.length
+      # 最高点
+      @max = LearningOutcome.where(user_id: current_user.id).maximum(:score)
+      # 平均点
+      @average = LearningOutcome.where(user_id: current_user.id).average(:score)
+    end
+
     private
     
     def learning_outcome_params
@@ -49,8 +64,8 @@ class LearningOutcomesController < ApplicationController
   
     # プロンプトを作りChatGPTに送信する
     def assess(document, text, sum_rel)
-      prompt = "#{document}の#{sum_rel}は以下になります。#{text}を【点数】XX点、【良い点】3つ、【改善点】3つの形式で評価してください。"
-             + " 【点数】には0〜100点の範囲で採点し、【良い点】と【改善点】は、簡潔で具体的にそれぞれ3つずつ挙げてください。"
+      prompt = '#{document}の#{sum_rel}は以下になります。#{text}を【点数】XX点、【良い点】3つ、【改善点】3つの形式で評価してください。' +
+               ' 【点数】には0〜100点の範囲で採点し、【良い点】と【改善点】は、簡潔で具体的にそれぞれ3つずつ挙げてください。'
       
       chat_service = ChatGptService.new
       response = chat_service.ask(prompt)
@@ -73,27 +88,27 @@ class LearningOutcomesController < ApplicationController
   
     # アセスメントから良い点を取得
     def good_from_assessment(assessment)
-      assessments = assessment.split("【改善点】")
-      assessment_array(assessments[0].sub("【良い点】", ""))
+      assessments = assessment.split('【改善点】')
+      assessment_array(assessments[0].sub('【良い点】', ''))
     end
   
     # アセスメントから改善点を取得
     def improvement_from_assessment(assessment)
-      assessments = assessment.split("【改善点】")
-      assessment_array(assessments[1].sub("【改善点】", ""))
+      assessments = assessment.split('【改善点】')
+      assessment_array(assessments[1].sub('【改善点】', ''))
     end
   
     # 良い点や改善点を配列にするメソッド
     def assessment_array(str)
       str_array = []
-      str_line = str.sub("\n", "")
+      str_line = str.sub('\n', '')
       str_line = str
-      str_1 = str_line.split("2.")[0].sub("1.", "")
-      str_2 = str_line.split("2.")[1].split("3.")[0].sub("2.", "")
-      str_3 = str_line.split("2.")[1].split("3.")[1]
-      str_array.push(str_1.delete(" "))
-      str_array.push(str_2.delete(" "))
-      str_array.push(str_3.delete(" "))
+      str_1 = str_line.split('2.')[0].sub('1.', '')
+      str_2 = str_line.split('2.')[1].split('3.')[0].sub('2.', '')
+      str_3 = str_line.split('2.')[1].split('3.')[1]
+      str_array.push(str_1.delete(' '))
+      str_array.push(str_2.delete(' '))
+      str_array.push(str_3.delete(' '))
       str_array
     end    
 end

@@ -4,6 +4,8 @@
       <% if user_signed_in? %>
         <li class="user-nickname" ><%= current_user.nickname %>さん</li>
         <li class="current_user_points" >景品獲得まであと<%= current_user.points == nil ? 1000 : 1000 - current_user.points %>ポイント</li>
+        <li><%= link_to '学習の手引きへ', study_guides_path, class: "root_page", target: "_blank" %></li>
+        <li><%= link_to '学習履歴画面へ', history_learning_outcomes_path, class: "root_page", target: "_blank" %></li>
         <li><%= link_to '問題文一覧画面へ', root_path, class: "root_page" %></li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, data: {turbo_method: :delete}, class: "logout" %></li>
       <% end %>
