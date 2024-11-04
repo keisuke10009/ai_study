@@ -40,6 +40,10 @@ th {
   background-color: #f4f4f4;
 }
 
+tbody tr:nth-child(2n) {
+  background-color: #ecfafc;
+}
+
 .item-btn {
   background-color: #0099e8;
   text-align: center;
