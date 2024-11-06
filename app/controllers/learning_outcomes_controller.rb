@@ -102,14 +102,20 @@ class LearningOutcomesController < ApplicationController
     # nilクラスのエラー処理が必要
     def assessment_array(str)
       str_array = []
-      str_line = str.sub("\n", "")
-      str_line = str
-      str_1 = str_line.split("2.")[0].sub("1.", "")
-      str_2 = str_line.split("2.")[1].split("3.")[0].sub("2.", "")
-      str_3 = str_line.split("2.")[1].split("3.")[1]
-      str_array.push(str_1.delete(" "))
-      str_array.push(str_2.delete(" "))
-      str_array.push(str_3.delete(" "))
-      str_array
+      
+      begin
+        str_line = str.sub("\n", "")
+        str_line = str
+        str_1 = str_line.split("2.")[0].sub("1.", "")
+        str_2 = str_line.split("2.")[1].split("3.")[0].sub("2.", "")
+        str_3 = str_line.split("2.")[1].split("3.")[1]
+        str_array.push(str_1.delete(" "))
+        str_array.push(str_2.delete(" "))
+        str_array.push(str_3.delete(" "))
+        str_array
+      rescue => e
+        Rails.logger.debug e.message
+        str_array = [""]
+      end
     end    
 end
