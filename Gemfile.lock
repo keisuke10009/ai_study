@@ -275,8 +275,6 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    tzinfo-data (1.2024.2)
-      tzinfo (>= 1.0.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -308,7 +306,6 @@ DEPENDENCIES
   devise
   factory_bot_rails
   faker
-  faraday
   faraday_middleware
   gon
   image_processing (~> 1.2)

@@ -1,6 +1,6 @@
 /* 学習画面 */
 .content_head {
-  width: 800px;
+  width: 1000px;
   display: flex;
   align-items: center;
   margin-bottom: 20px;
@@ -33,11 +33,13 @@
 }
 
 .input_text {
-  width: 800px;
+  width: 1000px;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 .button_area {
-  width: 800px;
+  width: 1000px;
   margin: 20px 0;
   text-align: center;
 }
@@ -95,7 +97,7 @@
 }
 
 .comment_content {
-  width: 500px;
+  width: 800px;
 }
 
 .form_btn {
@@ -119,7 +121,7 @@
 
 /* 学習履歴画面 */
 .history_contents {
-  width: 800px;
+  width: 1000px;
   margin: 10px auto;
 }
 
@@ -132,21 +134,21 @@
   display: flex;
   justify-content: space-between;
   margin: 10px 0;
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .head_contents_max {
   display: flex;
   justify-content: space-between;
   margin: 10px 0;
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .head_contents_average {
   display: flex;
   justify-content: space-between;
   margin: 10px 0;
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .table_contents {

@@ -18,6 +18,7 @@
         <tr class="table_tr" >
           <th class="talbe_head" >学習日</th>
           <th class="talbe_head" >レベル</th>
+          <th class="talbe_head" >カテゴリー</th>
           <th class="talbe_head" >タイトル</th>
           <th class="talbe_head" >要約/感想文</th>
           <th class="talbe_head" >点数</th>
@@ -28,13 +29,14 @@
           <tr class="table_tr" >
             <td class="talbe_content" ><%= document_learning_outcome.created_at.strftime("%Y年%m月%d日") %></td>
             <td class="talbe_content" ><%= document_learning_outcome.level.name %></td>
+            <td class="talbe_content" ><%= document_learning_outcome.category.name %></td>
             <td class="talbe_content" ><%= document_learning_outcome.title %></td>
             <% if document_learning_outcome.sum_rel_id == 1 %>
               <td class="talbe_content" >要約</td>
             <% else %>
               <td class="talbe_content" >感想文</td>
             <% end %>
-            <td class="talbe_content" ><%= document_learning_outcome.score %></td>
+            <td class="talbe_content" ><%= document_learning_outcome.score %>点</td>
           </tr>
         <% end %>
       </tbody>

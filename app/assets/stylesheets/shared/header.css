@@ -3,49 +3,62 @@
 }
 
 .top-page-header {
-  width: 800px;
+  width: 1000px;
+  height: 100px;
   margin: 10px auto;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
-.nav {
-  font-size: 18px;
+.header_user {
+  width: 400px;
+  height: 30px;
   display: flex;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-.lists-right {
-  display: flex;
-  list-style: none;
+  justify-content: flex-start;
   align-items: flex-end;
 }
 
 .user-nickname {
-  text-decoration: none;
   margin-right: 20px;
   color: #333333;
   font-weight: bold;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .current_user_points {
-  margin-right: 20px;
+  margin-right: 10px;
   color: #333333;
   font-weight: bold;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.root_page {
-  text-decoration: none;
-  line-height: 32px;
-  margin-right: 20px;
-  color: #333333;
-  font-weight: bold;
+.lists-right {
+  width: 500px;
+  height: 30px;
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+  align-items: flex-end;
 }
 
-.logout {
-  text-decoration: none;
+.header_btn {
+  width: 125px;
+  height: 30px;
   color: #333333;
   font-weight: bold;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header_btn_link {
+  text-decoration: none;
 }

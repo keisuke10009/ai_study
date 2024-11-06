@@ -46,7 +46,7 @@ class LearningOutcomesController < ApplicationController
       # documentsテーブルとlearning_outcomesテーブルから取得
       @documents_learning_outcomes = Document.joins(:learning_outcomes)
                             .where(learning_outcomes: { user_id: current_user.id })
-                            .select('documents.level_id, documents.title, learning_outcomes.sum_rel_id, learning_outcomes.score, learning_outcomes.created_at')
+                            .select('documents.level_id, documents.category_id, documents.title, learning_outcomes.sum_rel_id, learning_outcomes.score, learning_outcomes.created_at')
                             .order('learning_outcomes.created_at ASC')
       # 学習回数
       @learnings = @documents_learning_outcomes.length
@@ -77,7 +77,7 @@ class LearningOutcomesController < ApplicationController
       if match
         match[0].to_i
       else
-        return 0
+        return 60
       end
     end
     
@@ -99,16 +99,17 @@ class LearningOutcomesController < ApplicationController
     end
   
     # 良い点や改善点を配列にするメソッド
+    # nilクラスのエラー処理が必要
     def assessment_array(str)
       str_array = []
-      str_line = str.sub('\n', '')
+      str_line = str.sub("\n", "")
       str_line = str
-      str_1 = str_line.split('2.')[0].sub('1.', '')
-      str_2 = str_line.split('2.')[1].split('3.')[0].sub('2.', '')
-      str_3 = str_line.split('2.')[1].split('3.')[1]
-      str_array.push(str_1.delete(' '))
-      str_array.push(str_2.delete(' '))
-      str_array.push(str_3.delete(' '))
+      str_1 = str_line.split("2.")[0].sub("1.", "")
+      str_2 = str_line.split("2.")[1].split("3.")[0].sub("2.", "")
+      str_3 = str_line.split("2.")[1].split("3.")[1]
+      str_array.push(str_1.delete(" "))
+      str_array.push(str_2.delete(" "))
+      str_array.push(str_3.delete(" "))
       str_array
     end    
 end

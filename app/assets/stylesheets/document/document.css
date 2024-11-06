@@ -1,21 +1,22 @@
 /* 画面共通 */
 .title {
-  width: 800px;
+  width: 1000px;
   margin: 30px auto;
-  size: 40px;
   color: skyblue;
   text-align: center;
+  font-size: 50px;
 }
 
 .main_contents {
-  width: 800px;
+  width: 1000px;
   margin: 0 auto;
 }
 
 /* 問題文一覧画面 */
 .table {
-  width: 800px;
+  width: 1000px;
   border-collapse: collapse;
+  margin: 20px 0;
 }
 
 .talbe_head {
@@ -28,6 +29,7 @@
   border: 1px solid #ccc;
   padding: 8px;
   text-align: left;
+  font-size: 16px;
 }
 
 .talbe_content {
@@ -37,7 +39,9 @@
 }
 
 th {
-  background-color: #f4f4f4;
+  background-color: #0099e8;
+  color: #fff;
+  font-size: 18px;
 }
 
 tbody tr:nth-child(2n) {

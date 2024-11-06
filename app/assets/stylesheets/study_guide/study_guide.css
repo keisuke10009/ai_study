@@ -1,16 +1,18 @@
 /* 学習の手引き */
 .study_guide_contents {
-  width: 800px;
-  margin: 0 auto;
+  width: 1000px;
+  margin: 20px auto;
 }
 
 .l1_critical_essay_content {
   margin-bottom: 50px;
 }
 
+.p_text {
+  font-size: 18px;
+}
+
 .important_word {
   font-size: 18px;
   color: red;
 }
-
-.l1_reflection_essay_content {}

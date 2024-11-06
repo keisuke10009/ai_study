@@ -90,6 +90,7 @@ end
 
 gem 'ruby-openai'
 
-gem 'faraday'
+ # gem 'faraday'
 
 gem 'faraday_middleware'
+
