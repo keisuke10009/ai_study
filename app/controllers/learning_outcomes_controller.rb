@@ -43,17 +43,27 @@ class LearningOutcomesController < ApplicationController
   
     # 学習履歴画面
     def history
-      # documentsテーブルとlearning_outcomesテーブルから取得
-      @documents_learning_outcomes = Document.joins(:learning_outcomes)
-                            .where(learning_outcomes: { user_id: current_user.id })
-                            .select('documents.level_id, documents.category_id, documents.title, learning_outcomes.sum_rel_id, learning_outcomes.score, learning_outcomes.created_at')
-                            .order('learning_outcomes.created_at ASC')
-      # 学習回数
-      @learnings = @documents_learning_outcomes.length
-      # 最高点
-      @max = LearningOutcome.where(user_id: current_user.id).maximum(:score)
-      # 平均点
-      @average = LearningOutcome.where(user_id: current_user.id).average(:score).round
+      begin
+        # documentsテーブルとlearning_outcomesテーブルから取得
+        @documents_learning_outcomes = Document.joins(:learning_outcomes)
+                              .where(learning_outcomes: { user_id: current_user.id })
+                              .select('documents.level_id, documents.category_id, documents.title, learning_outcomes.sum_rel_id, learning_outcomes.score, learning_outcomes.created_at')
+                              .order('learning_outcomes.created_at ASC')
+        # 学習回数
+        @learnings = @documents_learning_outcomes.length
+        
+        if @learnings != 0
+          # 最高点
+          @max = LearningOutcome.where(user_id: current_user.id).maximum(:score)
+          # 平均点
+          @average = LearningOutcome.where(user_id: current_user.id).average(:score).round
+        else
+          @max = 0
+          @average = 0
+        end
+      rescue => e
+        Rails.logger.debug e.message
+      end
     end
 
     private
