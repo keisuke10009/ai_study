@@ -20,7 +20,6 @@ class LearningOutcomesController < ApplicationController
       @assessment = response
       
       @learning_outcome = LearningOutcome.new(learning_outcome_params)
-      binding.pry
       if @learning_outcome.save
         # ポイントを10ポイント付与
         user = current_user
