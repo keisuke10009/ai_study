@@ -23,7 +23,7 @@ class LearningOutcomesController < ApplicationController
       if @learning_outcome.save
         # ポイントを10ポイント付与
         user = current_user
-        new_points = current_user.points + 10
+        new_points = current_user.points.to_i + 10
         current_user.update_column(:points, new_points)
         redirect_to learning_outcome_path(@learning_outcome.id)
       else
