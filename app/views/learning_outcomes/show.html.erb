@@ -31,22 +31,10 @@
     <% end %>
   </div>
   <div>
-    <div>
-      <h2>あなたの点数は<%= @learning_outcome.score %>点です。</h2>
+    <div class="document_title">解説</div>
+    <div class="document">
+      <div><%= @assessments %></div>
     </div>
-    <div>【良い点】</div>
-    <ul>
-      <% @good_points.each do |good| %>
-        <li><%= good %></li>
-      <% end %>
-    </ul>
-    <div>【改善点】</div>
-    <ul>
-      <% @improvement_points.each do |improvement| %>
-        <li><%= improvement %></li>
-      <% end %>
-    </ul>
-  </div>
   <div class="learning_outcome_comments">
     <%= form_with model: [@learning_outcome, @comment], comments: "comments_form", local: true do |f|%>
       <div class="field">

@@ -90,8 +90,8 @@ gem 'image_processing', '~> 1.2'
 gem 'gon'
 
 group :production do
-  # gem 'pg'
-  gem 'unicorn', '6.1.0'
+  gem 'pg'
+  # gem 'unicorn', '6.1.0'
 end
 
 gem 'ruby-openai'
@@ -100,3 +100,5 @@ gem 'ruby-openai'
 
 gem 'faraday_middleware'
 
+source 'https://rubygems.org'
+gem 'anthropic'

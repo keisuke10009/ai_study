@@ -20,8 +20,5 @@ test:
 
 production:
   <<: *default
-  adapter: mysql2
-  database: ai_study_production
-  username: root
-  password: <%= ENV['DATABASE_PASSWORD'] %>
-  socket: /var/lib/mysql/mysql.sock
+  adapter: postgresql
+  url: <%= ENV['DATABASE_URL'] %>

@@ -5,7 +5,7 @@ function count() {
     const charNum = document.getElementsByClassName("text_count")[0];
     charNum.innerHTML = `${countVal}文字`;
     const inputButton = document.getElementById("input_button");
-    if (countVal >= 200) {
+    if (countVal >= 150) {
       inputButton.disabled = false;
       inputButton.classList.remove("input_button_disable");
       inputButton.classList.add("input_button");

@@ -13,10 +13,14 @@ class LearningOutcomesController < ApplicationController
       @document = Document.find(learning_outcome_params[:document_id])
       # ChatGPTのレスポンスを取得
       response = assess(@document.document, learning_outcome_params[:text], learning_outcome_params[:sum_rel_id])
-      @score = score_from_response(response)
-      @assessment = assessment_from_resonse(response)
+      # @score = score_from_response(response)
+      # @assessment = assessment_from_resonse(response)
+      
+      @score = 60
+      @assessment = response
       
       @learning_outcome = LearningOutcome.new(learning_outcome_params)
+      binding.pry
       if @learning_outcome.save
         # ポイントを10ポイント付与
         user = current_user
@@ -33,9 +37,10 @@ class LearningOutcomesController < ApplicationController
       @learning_outcome = LearningOutcome.find(params[:id])
       @document = Document.find(@learning_outcome.document_id)
       # assessmentから良い点のみを取得
-      @good_points = good_from_assessment(@learning_outcome.assessment)
+      # @good_points = good_from_assessment(@learning_outcome.assessment)
       # assessmentから指摘ポイントを取得
-      @improvement_points = improvement_from_assessment(@learning_outcome.assessment)
+      # @improvement_points = improvement_from_assessment(@learning_outcome.assessment)
+      @assessments = @learning_outcome.assessment
       # コメントを取得
       @comment = Comment.new
       @comments = @learning_outcome.comments.includes(:user)
@@ -73,39 +78,72 @@ class LearningOutcomesController < ApplicationController
     end
   
     # プロンプトを作りChatGPTに送信する
-    def assess(document, text, sum_rel)
-      prompt = '#{document}の#{sum_rel}は以下になります。#{text}を【点数】XX点、【良い点】3つ、【改善点】3つの形式で評価してください。' +
-               ' 【点数】には0〜100点の範囲で採点し、【良い点】と【改善点】は、簡潔で具体的にそれぞれ3つずつ挙げてください。'
+    def assess(document, text, sum_rel_id)
+      if sum_rel_id == 1
+        sum_rel = "要約"
+      else
+        sum_rel = "感想文"
+      end
+      # prompt = 'あなたは優秀な国語教師です。' +
+      #           '#{document}の#{sum_rel}は以下になります。#{text}を次のフォーマットで回答してください。' +
+      #           '【点数】XX点【良い点】1.XXXXXX 2.XXXXX 3.XXXXX【改善点】1.XXXXXX 2.XXXXX 3.XXXXX' +
+      #           'XXXXの部分にはあなたの意見を入れて下さい' +
+      #           'フォーマット部分(XXXXの部分)は出力しないで結構です'
+      
+      prompt = 'あなたは優秀な国語教師です。' +
+                document + 'の' + sum_rel + 'は以下になります。' + text + '改善点を提示して下さい。'
       
       chat_service = ChatGptService.new
-      response = chat_service.ask(prompt)
+      chat_service.ask(prompt)
+      # claude_sevice = ClaudeService.new
+      # response = claude_sevice.ask(prompt)
     end
   
     # レスポンスから点数だけ取得する
     def score_from_response(response)
-      match = response.match(/(?<=【点数】)\d+(?=点)/)
-      if match
-        match[0].to_i
-      else
+      begin
+        match = response.match(/(?<=【点数】)\d+(?=点)/)
+        if match
+          match[0].to_i
+        else
+          return 60
+        end
+      rescue => e
+        # Rails.logger.debug e.message
         return 60
       end
     end
     
     # レスポンスから【良い点】以降を取得する
     def assessment_from_resonse(response)
-      response[/(【良い点】.*)/m, 1]
+      begin
+        response[/(【良い点】.*)/m, 1]
+      rescue => e
+        # Rails.logger.debug e.message
+        return " "
+      end
     end
   
     # アセスメントから良い点を取得
     def good_from_assessment(assessment)
-      assessments = assessment.split('【改善点】')
-      assessment_array(assessments[0].sub('【良い点】', ''))
+      begin
+        assessments = assessment.split('【改善点】')
+        assessment_array(assessments[0].sub('【良い点】', ''))
+      rescue => e
+        Rails.logger.debug e.message
+        str_array = [""]
+      end
     end
   
     # アセスメントから改善点を取得
     def improvement_from_assessment(assessment)
-      assessments = assessment.split('【改善点】')
-      assessment_array(assessments[1].sub('【改善点】', ''))
+      begin
+        assessments = assessment.split('【改善点】')
+        assessment_array(assessments[1].sub('【改善点】', ''))
+      rescue => e
+        Rails.logger.debug e.message
+        str_array = [""]
+      end
     end
   
     # 良い点や改善点を配列にするメソッド
